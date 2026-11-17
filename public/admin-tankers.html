@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tankers · PaaniLink</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>">
+</head>
+<body>
+  <div id="app-header"></div>
+  <main id="main" class="container">
+    <div class="page-head">
+      <div>
+        <h1>Tankers</h1>
+        <p class="muted">Registered tankers, their size and home hydrant.</p>
+      </div>
+      <button type="button" class="btn btn-primary" id="add-btn">Add tanker</button>
+    </div>
+
+    <section class="card" aria-label="Filters">
+      <form id="filters" class="filters" role="search">
+        <div class="field">
+          <label for="q">Search</label>
+          <input id="q" name="q" type="search" placeholder="Registration no. or hydrant">
+        </div>
+        <div class="field">
+          <label for="hydrantId">Hydrant</label>
+          <select id="hydrantId" name="hydrantId"></select>
+        </div>
+        <div class="field">
+          <label for="capacity">Size</label>
+          <select id="capacity" name="capacity"></select>
+        </div>
+        <div class="field">
+          <label for="status">Status</label>
+          <select id="status" name="status"></select>
+        </div>
+        <div class="field">
+          <label for="sortBy">Sort by</label>
+          <select id="sortBy" name="sortBy">
+            <option value="registrationNo:asc">Registration (A-Z)</option>
+            <option value="capacity:desc">Size (large first)</option>
+            <option value="capacity:asc">Size (small first)</option>
+            <option value="hydrantName:asc">Hydrant (A-Z)</option>
+            <option value="status:asc">Status</option>
+          </select>
+        </div>
+        <div class="field">
+          <button type="reset" class="btn btn-ghost btn-block">Clear filters</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card" aria-label="Tanker list">
+      <div id="list" aria-live="polite"></div>
+      <div id="pager"></div>
+    </section>
+  </main>
+  <div id="app-footer"></div>
+  <script type="module" src="js/pages/admin-tankers.js"></script>
+</body>
+</html>

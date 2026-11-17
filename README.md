@@ -41,13 +41,28 @@ Options: `PORT=4000 npm start` changes the port; `LATENCY_MS=0 npm start` remove
 > Open the site through `http://localhost:3000`, not by double-clicking the HTML files – ES modules and
 > `fetch()` need a web server.
 
+### Live demo on GitHub Pages
+
+**https://code-hamz-a.github.io/WaterSupplySystem/** (the root `index.html` redirects to `public/`).
+
+GitHub Pages only serves static files, so it cannot run `mock-api/server.js`. Instead:
+
+1. The first API call in `public/js/api.js` checks whether a server answers `api/meta`.
+2. If not, it registers `public/sw.js`, a **Service Worker**.
+3. The Service Worker loads `mock-api/core.js`, the **same routes and rules** the Node server uses, and
+   answers every `fetch('api/...')` inside the browser. The page code does not change.
+4. Data is saved in the visitor's browser (Cache Storage). "Reset demo data" on the login page restores the seed.
+
+Pages settings: *Settings → Pages → Deploy from a branch → `main` / `(root)`*. The empty `.nojekyll`
+file stops GitHub from processing the files with Jekyll.
+
 ## 2. Demo accounts
 
 All demo passwords are **`paani1234`**. The login page lists the main ones (click to fill).
 
 | Role | Email | Notes |
 |---|---|---|
-| Administrator | admin@paanilink.pk | Sana Malik |
+| Administrator | admin@paanilink.pk | Hamza Arif |
 | Zone Officer | officer.gulshan@paanilink.pk | Gulshan-e-Iqbal |
 | Zone Officer | officer.orangi@paanilink.pk | Orangi Town (has a pending subsidy application) |
 | Zone Officer | officer.korangi@paanilink.pk | Korangi |
@@ -74,6 +89,8 @@ pending, something on the road today, something delivered, failed, disputed and 
 ```
 paanilink/
 ├─ package.json            npm start / npm run reset
+├─ index.html              redirects GitHub Pages visitors to public/
+├─ .nojekyll               tells GitHub Pages not to run Jekyll
 ├─ README.md
 ├─ docs/
 │  ├─ API_CONTRACT.md      every endpoint, body, response and error
@@ -81,12 +98,14 @@ paanilink/
 │  ├─ use-case-diagram.svg UML use case diagram
 │  └─ use-case-diagram.md  use case descriptions + PlantUML source
 ├─ mock-api/               (Phase 1 only – replaced by the real backend in Phase 2)
-│  ├─ server.js            HTTP server: static files + REST API, rules, role checks
+│  ├─ core.js              all routes, business rules and role checks (runs in Node and in the browser)
+│  ├─ server.js            Node HTTP server: static files + /api using core.js
 │  ├─ meta.js              lookup lists + booking workflow table (served at /api/meta)
 │  ├─ seed.js              demo data
 │  └─ db.json              created on first start (git-ignored)
 └─ public/                 the frontend
    ├─ *.html               one file per page (see section 5)
+   ├─ sw.js                Service Worker: runs mock-api/core.js in the browser on GitHub Pages
    ├─ css/styles.css       single responsive stylesheet
    └─ js/
       ├─ config.js         API_BASE – the only place that knows the server address
@@ -172,7 +191,7 @@ Example: **Zone Officer approves a subsidised booking** on `bookings.html`.
    Then `createList()` (`list.js`) reads the filter form and calls `get('/bookings', { status, page, sort, ... })`.
 2. **Request** – `api.js` builds `GET /api/bookings?status=PendingApproval&page=1&limit=10`, adds
    `Authorization: Bearer mock-token-2` and calls `fetch()`.
-3. **Server** – `mock-api/server.js` route `GET /api/bookings` keeps only bookings the officer may see
+3. **Server** – `mock-api/core.js` route `GET /api/bookings` keeps only bookings the officer may see
    (`canSeeBooking()`: same zone), filters, sorts and paginates (`listResult()`), and returns `{ data, page, total, ... }`.
 4. **Render** – `bookings.js` builds the table with `renderTable()`. For each row the *Actions* column calls
    `actionButtons(booking, { user, meta })` in `booking-actions.js`, which keeps only actions whose `roles` include

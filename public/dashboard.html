@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard · PaaniLink</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>">
+</head>
+<body>
+  <div id="app-header"></div>
+  <main id="main" class="container">
+    <div class="page-head">
+      <div>
+        <h1>Dashboard</h1>
+        <p class="muted" id="greeting"></p>
+      </div>
+      <div class="actions" id="quick-actions"></div>
+    </div>
+    <div id="notice"></div>
+    <section aria-label="Summary">
+      <div class="grid grid-4" id="cards"></div>
+    </section>
+    <section class="card mt" aria-labelledby="recent-title">
+      <h2 id="recent-title">Recent activity</h2>
+      <div id="recent"></div>
+    </section>
+  </main>
+  <div id="app-footer"></div>
+  <script type="module" src="js/pages/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "paanilink",
+  "version": "1.0.0",
+  "description": "PaaniLink Water Tanker Booking and Dispatch System - Phase 1 frontend with mock API",
+  "private": true,
+  "scripts": {
+    "start": "node mock-api/server.js",
+    "reset": "node -e \"require('fs').rmSync('mock-api/db.json',{force:true});console.log('Mock database reset. It will be re-seeded on next start.')\""
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

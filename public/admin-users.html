@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Users · PaaniLink</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>">
+</head>
+<body>
+  <div id="app-header"></div>
+  <main id="main" class="container">
+    <div class="page-head">
+      <div>
+        <h1>Users</h1>
+        <p class="muted">Customers and Water Board staff. Deactivated users cannot log in.</p>
+      </div>
+      <button type="button" class="btn btn-primary" id="add-btn">Add user</button>
+    </div>
+
+    <section class="card" aria-label="Filters">
+      <form id="filters" class="filters" role="search">
+        <div class="field">
+          <label for="q">Search</label>
+          <input id="q" name="q" type="search" placeholder="Name, email, phone or CNIC">
+        </div>
+        <div class="field">
+          <label for="role">Role</label>
+          <select id="role" name="role"></select>
+        </div>
+        <div class="field">
+          <label for="active">Account</label>
+          <select id="active" name="active">
+            <option value="">All accounts</option>
+            <option value="true">Active</option>
+            <option value="false">Deactivated</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sortBy">Sort by</label>
+          <select id="sortBy" name="sortBy">
+            <option value="id:desc">Newest first</option>
+            <option value="id:asc">Oldest first</option>
+            <option value="name:asc">Name (A-Z)</option>
+            <option value="role:asc">Role</option>
+          </select>
+        </div>
+        <div class="field">
+          <button type="reset" class="btn btn-ghost btn-block">Clear filters</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card" aria-label="User list">
+      <div id="list" aria-live="polite"></div>
+      <div id="pager"></div>
+    </section>
+  </main>
+  <div id="app-footer"></div>
+  <script type="module" src="js/pages/admin-users.js"></script>
+</body>
+</html>

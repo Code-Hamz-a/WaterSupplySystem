@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Subsidy · PaaniLink</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>">
+</head>
+<body>
+  <div id="app-header"></div>
+  <main id="main" class="container">
+    <div class="page-head">
+      <div>
+        <h1>Subsidised status</h1>
+        <p class="muted">Low-income households, hospitals and mosques can book tankers at a reduced rate after approval by the Zone Officer.</p>
+      </div>
+    </div>
+
+    <div class="layout-side">
+      <div>
+        <section class="card" id="form-card" aria-labelledby="form-title" hidden>
+          <h2 id="form-title">Apply for subsidised status</h2>
+          <form id="apply-form" novalidate>
+            <div class="form-alert" role="alert" hidden></div>
+            <fieldset class="field">
+              <legend>Category <span class="req" aria-hidden="true">*</span></legend>
+              <div class="choice-cards" id="category-options"></div>
+            </fieldset>
+            <div class="form-grid cols-2">
+              <div class="field">
+                <label for="proofType">Proof document <span class="req" aria-hidden="true">*</span></label>
+                <select id="proofType" name="proofType" required></select>
+              </div>
+              <div class="field">
+                <label for="proofReference">Document number <span class="req" aria-hidden="true">*</span></label>
+                <input id="proofReference" name="proofReference" required maxlength="30" aria-describedby="ref-hint">
+                <small id="ref-hint" class="hint">Number printed on the document, e.g. BISP-778812</small>
+              </div>
+              <div class="field" data-for="Household">
+                <label for="monthlyIncome">Monthly household income (Rs) <span class="req" aria-hidden="true">*</span></label>
+                <input id="monthlyIncome" name="monthlyIncome" type="number" min="0" step="1" inputmode="numeric" aria-describedby="income-hint" required>
+                <small id="income-hint" class="hint"></small>
+              </div>
+              <div class="field" data-for="Household">
+                <label for="householdSize">People in household <span class="req" aria-hidden="true">*</span></label>
+                <input id="householdSize" name="householdSize" type="number" min="1" max="30" step="1" inputmode="numeric" required>
+              </div>
+              <div class="field span-2" data-for="Hospital Mosque">
+                <label for="institutionName">Name of hospital / mosque <span class="req" aria-hidden="true">*</span></label>
+                <input id="institutionName" name="institutionName" maxlength="80" required>
+              </div>
+              <div class="field span-2">
+                <label for="details">Other details</label>
+                <textarea id="details" name="details" maxlength="300" placeholder="Anything that helps the officer verify your application"></textarea>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">Submit application</button>
+          </form>
+        </section>
+
+        <section class="card" aria-labelledby="hist-title">
+          <h2 id="hist-title">My applications</h2>
+          <div id="list" aria-live="polite"></div>
+          <div id="pager"></div>
+        </section>
+      </div>
+
+      <aside>
+        <section class="card" aria-labelledby="status-title">
+          <h2 id="status-title">Current status</h2>
+          <div id="status-box"></div>
+        </section>
+      </aside>
+    </div>
+  </main>
+  <div id="app-footer"></div>
+  <script type="module" src="js/pages/subsidy-apply.js"></script>
+</body>
+</html>

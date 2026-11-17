@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tankers &amp; hydrant · PaaniLink</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>">
+</head>
+<body>
+  <div id="app-header"></div>
+  <main id="main" class="container">
+    <div class="page-head">
+      <div>
+        <h1>Tankers &amp; hydrant</h1>
+        <p class="muted">Mark a tanker or the whole hydrant unavailable (breakdown, repair, no water). Unavailable items cannot be assigned or booked.</p>
+      </div>
+    </div>
+
+    <section class="card" aria-labelledby="h-title">
+      <h2 id="h-title">Hydrant</h2>
+      <div id="hydrant" aria-live="polite"></div>
+    </section>
+
+    <section class="card" aria-labelledby="t-title">
+      <h2 id="t-title">Tankers</h2>
+      <form id="filters" class="filters" role="search">
+        <div class="field">
+          <label for="q">Search</label>
+          <input id="q" name="q" type="search" placeholder="Registration no.">
+        </div>
+        <div class="field">
+          <label for="status">Status</label>
+          <select id="status" name="status"></select>
+        </div>
+        <div class="field">
+          <label for="capacity">Size</label>
+          <select id="capacity" name="capacity"></select>
+        </div>
+      </form>
+      <div id="list" class="mt" aria-live="polite"></div>
+      <div id="pager"></div>
+    </section>
+  </main>
+  <div id="app-footer"></div>
+  <script type="module" src="js/pages/fleet.js"></script>
+</body>
+</html>

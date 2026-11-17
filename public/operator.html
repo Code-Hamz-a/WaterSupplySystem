@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dispatch board · PaaniLink</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>">
+</head>
+<body>
+  <div id="app-header"></div>
+  <main id="main" class="container">
+    <div class="page-head">
+      <div>
+        <h1>Dispatch board</h1>
+        <p class="muted" id="hydrant-line"></p>
+      </div>
+      <form id="date-form" class="row" aria-label="Choose date">
+        <label for="date" class="sr-only">Delivery date</label>
+        <input id="date" name="date" type="date" style="width:auto">
+        <button type="button" class="btn btn-ghost" id="refresh">Refresh</button>
+      </form>
+    </div>
+
+    <div id="hydrant-alert"></div>
+
+    <section class="card" aria-labelledby="quota-title">
+      <h2 id="quota-title">Water quota</h2>
+      <div id="quota" aria-live="polite"></div>
+    </section>
+
+    <div class="grid grid-3">
+      <section class="card" aria-labelledby="g1">
+        <h2 id="g1">1 · Waiting for a tanker</h2>
+        <p class="small muted">Approved bookings. Assign a free tanker of the right size and a driver.</p>
+        <div id="col-waiting"></div>
+      </section>
+      <section class="card" aria-labelledby="g2">
+        <h2 id="g2">2 · At the hydrant</h2>
+        <p class="small muted">Record when the tanker is filled and when it leaves.</p>
+        <div id="col-hydrant"></div>
+      </section>
+      <section class="card" aria-labelledby="g3">
+        <h2 id="g3">3 · On the road &amp; finished</h2>
+        <p class="small muted">The driver updates these from their phone.</p>
+        <div id="col-road"></div>
+      </section>
+    </div>
+  </main>
+  <div id="app-footer"></div>
+  <script type="module" src="js/pages/operator.js"></script>
+</body>
+</html>

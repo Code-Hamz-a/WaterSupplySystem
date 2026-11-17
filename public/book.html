@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book a tanker · PaaniLink</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>">
+</head>
+<body>
+  <div id="app-header"></div>
+  <main id="main" class="container">
+    <div class="page-head">
+      <div>
+        <h1>Book a tanker</h1>
+        <p class="muted" id="zone-line"></p>
+      </div>
+    </div>
+
+    <div class="layout-side">
+      <section class="card" aria-label="Booking form">
+        <form id="book-form" novalidate>
+          <div class="form-alert" role="alert" hidden></div>
+
+          <fieldset class="field" id="type-field">
+            <legend>Booking type <span class="req" aria-hidden="true">*</span></legend>
+            <div class="choice-cards" id="type-options"></div>
+          </fieldset>
+
+          <div class="form-grid cols-2">
+            <div class="field span-2">
+              <label for="hydrantId">Hydrant <span class="req" aria-hidden="true">*</span></label>
+              <select id="hydrantId" name="hydrantId" required aria-describedby="hydrant-hint"></select>
+              <small id="hydrant-hint" class="hint">Only hydrants that serve your zone are listed</small>
+            </div>
+            <div class="field">
+              <label for="deliveryDate">Delivery date <span class="req" aria-hidden="true">*</span></label>
+              <input id="deliveryDate" name="deliveryDate" type="date" required aria-describedby="date-hint">
+              <small id="date-hint" class="hint"></small>
+            </div>
+            <div class="field">
+              <label for="slot">Time slot <span class="req" aria-hidden="true">*</span></label>
+              <select id="slot" name="slot" required aria-describedby="slot-hint"></select>
+              <small id="slot-hint" class="hint">Slots outside the hydrant's hours are disabled</small>
+            </div>
+          </div>
+
+          <fieldset class="field" id="capacity-field">
+            <legend>Tanker size <span class="req" aria-hidden="true">*</span></legend>
+            <div class="choice-cards" id="capacity-options"></div>
+          </fieldset>
+
+          <div class="field">
+            <label for="deliveryAddress">Delivery address <span class="req" aria-hidden="true">*</span></label>
+            <input id="deliveryAddress" name="deliveryAddress" required maxlength="200" aria-describedby="addr-hint">
+            <small id="addr-hint" class="hint">Must be inside your registered zone</small>
+          </div>
+          <div class="field">
+            <label for="notes">Notes for the driver</label>
+            <textarea id="notes" name="notes" maxlength="200" placeholder="e.g. Gate is on the back street"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Confirm booking</button>
+        </form>
+      </section>
+
+      <aside class="stack" aria-label="Booking summary">
+        <section class="card" aria-labelledby="quota-title">
+          <h2 id="quota-title">Hydrant water left</h2>
+          <div id="quota-box" aria-live="polite"><p class="muted">Pick a hydrant and date.</p></div>
+        </section>
+        <section class="card" aria-labelledby="subsidy-title" id="subsidy-card">
+          <h2 id="subsidy-title">Your subsidy</h2>
+          <div id="subsidy-box" aria-live="polite"></div>
+        </section>
+        <section class="card" aria-labelledby="price-title">
+          <h2 id="price-title">Price</h2>
+          <div id="price-box" aria-live="polite"><p class="muted">Choose a tanker size.</p></div>
+        </section>
+      </aside>
+    </div>
+  </main>
+  <div id="app-footer"></div>
+  <script type="module" src="js/pages/book.js"></script>
+</body>
+</html>

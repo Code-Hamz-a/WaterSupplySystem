@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bills · PaaniLink</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>">
+</head>
+<body>
+  <div id="app-header"></div>
+  <main id="main" class="container">
+    <div class="page-head">
+      <div>
+        <h1 id="page-title">Bills</h1>
+        <p class="muted">One bill is issued for every booking.</p>
+      </div>
+    </div>
+
+    <section class="card" aria-label="Filters">
+      <form id="filters" class="filters" role="search">
+        <div class="field">
+          <label for="q">Search</label>
+          <input id="q" name="q" type="search" placeholder="Bill or booking number">
+        </div>
+        <div class="field">
+          <label for="status">Status</label>
+          <select id="status" name="status"></select>
+        </div>
+        <div class="field">
+          <label for="bookingType">Type</label>
+          <select id="bookingType" name="bookingType"></select>
+        </div>
+        <div class="field">
+          <label for="sortBy">Sort by</label>
+          <select id="sortBy" name="sortBy">
+            <option value="issuedAt:desc">Newest first</option>
+            <option value="issuedAt:asc">Oldest first</option>
+            <option value="amount:desc">Amount (high to low)</option>
+            <option value="amount:asc">Amount (low to high)</option>
+          </select>
+        </div>
+      </form>
+    </section>
+
+    <section class="card" aria-labelledby="page-title">
+      <div id="list" aria-live="polite"></div>
+      <div id="pager"></div>
+    </section>
+  </main>
+  <div id="app-footer"></div>
+  <script type="module" src="js/pages/bills.js"></script>
+</body>
+</html>

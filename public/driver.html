@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b2545">
+  <title>My trips · PaaniLink</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>">
+</head>
+<body>
+  <div id="app-header"></div>
+  <main id="main" class="container" style="max-width:720px">
+    <div class="page-head">
+      <div>
+        <h1>My trips</h1>
+        <p class="muted" id="driver-line"></p>
+      </div>
+      <button type="button" class="btn btn-ghost" id="refresh">Refresh</button>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Trip lists">
+      <button type="button" role="tab" id="tab-today" aria-controls="panel" aria-selected="true" data-tab="today">Today</button>
+      <button type="button" role="tab" id="tab-upcoming" aria-controls="panel" aria-selected="false" data-tab="upcoming">Upcoming</button>
+      <button type="button" role="tab" id="tab-history" aria-controls="panel" aria-selected="false" data-tab="history">History</button>
+    </div>
+
+    <section id="panel" role="tabpanel" aria-labelledby="tab-today">
+      <div id="list" aria-live="polite"></div>
+      <div id="pager"></div>
+    </section>
+  </main>
+  <div id="app-footer"></div>
+  <script type="module" src="js/pages/driver.js"></script>
+</body>
+</html>
